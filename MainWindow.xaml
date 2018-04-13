@@ -7,31 +7,104 @@
         WindowStartupLocation="CenterScreen" KeyUp="OnKeyUp" KeyDown="OnKeyDown"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Background="Black">
-    
-    <DockPanel LastChildFill="True">
-        <Grid DockPanel.Dock="Top">
+
+
+    <Grid>
+        <Image Name="StartPage" Source="img/Start.png" Visibility="Hidden" />
+
+        <DockPanel Name="GamePage" LastChildFill="True" Visibility="Hidden">
+            <Grid DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <!-- <ColumnDefinition Width="*" /> -->
+                </Grid.ColumnDefinitions>
+
+                <TextBlock HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="50">
+                    <Run Text="{Binding LeftNameChangedLetter, Mode=OneWay}"
+                         Foreground="{Binding RightBrush, Mode=OneWay}" />
+                    <Run Text="{Binding LeftNameUntouchedLetter, Mode=OneWay}"
+                         Foreground="{Binding LeftBrush, Mode=OneWay}" />
+                </TextBlock>
+
+                <TextBlock HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" FontSize="50">
+                    <Run Text="{Binding RightNameChangedLetter, Mode=OneWay}"
+                         Foreground="{Binding LeftBrush, Mode=OneWay}" />
+                    <Run Text="{Binding RightNameUntouchedLetter, Mode=OneWay}"
+                         Foreground="{Binding RightBrush, Mode=OneWay}" />
+                </TextBlock>
+            </Grid>
+
+            <Canvas Name="Canva" DockPanel.Dock="Bottom" />
+        </DockPanel>
+
+
+        <Grid Name="CreditsPage" Visibility="Visible">
             <Grid.RowDefinitions>
-                <RowDefinition  Height="*"/>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
-            
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
-            <TextBlock HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="50">
-                <Run Text="{Binding LeftNameChangedLetter, Mode=OneWay}" Foreground="{Binding RightBrush, Mode=OneWay}"/>
-                <Run Text="{Binding LeftNameUntouchedLetter, Mode=OneWay}" Foreground="{Binding LeftBrush, Mode=OneWay}"/>
-            </TextBlock>
-            
-            <TextBlock HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" FontSize="50">
-                <Run Text="{Binding RightNameChangedLetter, Mode=OneWay}" Foreground="{Binding LeftBrush, Mode=OneWay}"/>
-                <Run Text="{Binding RightNameUntouchedLetter, Mode=OneWay}" Foreground="{Binding RightBrush, Mode=OneWay}"/>
-            </TextBlock>
+            <Image Source="img/Galya-2.png" Height="200" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 50 0"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Автор идеи"
+                       Foreground="Aqua" FontSize="40" Grid.Column="1" Grid.Row="1" />
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Алексей Середкин"
+                       Foreground="Aquamarine" FontSize="40" Grid.Column="1" Grid.Row="2" />
         </Grid>
-        
-        <Canvas Name="Canva" DockPanel.Dock="Bottom">
-        </Canvas>    
-    </DockPanel>
-    
+
+        <!-- <Grid Name="CreditsPage" Visibility="Visible"> -->
+        <!--     <Grid.RowDefinitions> -->
+        <!--         <RowDefinition Height="3*" /> -->
+        <!--         <RowDefinition Height="*" /> -->
+        <!--         <RowDefinition Height="*" /> -->
+        <!--         <RowDefinition Height="50" /> -->
+        <!--         <RowDefinition Height="*" /> -->
+        <!--         <RowDefinition Height="*" /> -->
+        <!--         <RowDefinition Height="3*" /> -->
+        <!--     </Grid.RowDefinitions> -->
+        <!-- -->
+        <!--     <Grid.ColumnDefinitions> -->
+        <!--         <ColumnDefinition Width="*" /> -->
+        <!--         <ColumnDefinition Width="*" /> -->
+        <!--     </Grid.ColumnDefinitions> -->
+        <!--      -->
+        <!--      -->
+        <!--     <Image Source="img/Galya-2.png" Height="200" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"/> -->
+        <!--     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Автор идеи" -->
+        <!--                Foreground="Aqua" FontSize="40" Grid.Column="1" Grid.Row="1"  /> -->
+        <!--     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Алексей Середкин" -->
+        <!--                Foreground="Aquamarine" FontSize="40" Grid.Column="1" Grid.Row="2" /> -->
+        <!--      -->
+        <!--      -->
+        <!--     <Image Source="img/Dima-1.png" Height="200" Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center"/> -->
+        <!--     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Автор идеи" -->
+        <!--                Foreground="Aqua" FontSize="40" Grid.Column="0" Grid.Row="4"  /> -->
+        <!--     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Алексей Середкин" -->
+        <!--                Foreground="Aquamarine" FontSize="40" Grid.Column="0" Grid.Row="5" /> -->
+        <!--      -->
+        <!-- </Grid> -->
+        <!-- <Border BorderBrush="AliceBlue" BorderThickness="3" Grid.Column="2" Grid.Row="0"> -->
+      
+        <!-- <Image Source="img/Dima-1.png"/> -->
+        <!-- <Image Source="img/Galya-2.png"/> -->
+        <!-- <Image Source="img/Guzya-3.png"/> -->
+        <!-- <Image Source="img/Katya-4.png"/> -->
+        <!-- <Image Source="img/Ksyusha-12.png"/> -->
+        <!-- <Image Source="img/Liza-5.png"/> -->
+        <!-- <Image Source="img/Natasha-6.png"/> -->
+        <!-- <Image Source="img/Nikita-7.png"/> -->
+        <!-- <Image Source="img/Olya-8.png"/> -->
+        <!-- <Image Source="img/Sasha-9.png"/> -->
+        <!-- <Image Source="img/Vitalik-10.png"/> -->
+
+    </Grid>
 </Window>

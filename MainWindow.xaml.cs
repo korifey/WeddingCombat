@@ -58,7 +58,6 @@ namespace WeddingCombat
         {
             Reset();
             InitializeComponent();
-            Game();
         }
 
         private async void Game()
@@ -120,6 +119,14 @@ namespace WeddingCombat
 
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
+            if (StartPage.IsVisible)
+            {
+                StartPage.Visibility = Visibility.Collapsed;
+                CreditsPage.Visibility = Visibility.Visible;
+//                GamePage.Visibility = Visibility.Visible;
+//                Game();
+            }
+            
             switch (e.Key)
             {
                 case Key.Escape:
