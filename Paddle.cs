@@ -13,7 +13,7 @@ namespace WeddingCombat
         //position
         public double CenterX { get; }
         public double Width { get; } = 0.01 * XYRatio;
-        public double Height { get; } = 0.1;
+        public double Height { get; } = 0.18;
 
         public double CenterY { get; private set; } = 0.5;
 
@@ -52,7 +52,7 @@ namespace WeddingCombat
 
         public bool ThrottleIs(double value) => Eq(value, Throttle);
 
-        private const double EngineForceMax = 0.5 * 10E-6;
+        private const double EngineForceMax = 0.4 * 10E-6;
         private const double FrictionCoefficient = 0.5 / Fps; //friction force = 
 
 
@@ -62,7 +62,7 @@ namespace WeddingCombat
         public double NetForce => EngineForce + FrictionForce;
         public double AccelerationMs2 => NetForce / Mass;
 
-        protected override void UpdateNextFrame(long deltaTime, IEnumerable<GameObject> objects)
+        protected override CollisionKind? UpdateNextFrame(long deltaTime, IEnumerable<GameObject> objects)
         {
             _velocity += AccelerationMs2 * deltaTime;
 
@@ -80,6 +80,8 @@ namespace WeddingCombat
                 Bottom = 2.0 - Bottom;
                 _velocity = -_velocity;
             }
+
+            return null;
         }
 
 

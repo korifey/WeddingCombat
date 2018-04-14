@@ -30,9 +30,10 @@ namespace WeddingCombat
             canvas.Children.Add(rect);
         }
 
-        protected override void UpdateNextFrame(long deltaTime, IEnumerable<GameObject> objects)
+        protected override CollisionKind? UpdateNextFrame(long deltaTime, IEnumerable<GameObject> objects)
         {
             //nothing to do
+            return null;
         }
     }
 }

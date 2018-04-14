@@ -49,21 +49,25 @@ namespace WeddingCombat
             canvas.Children.Add(rect);
         }
 
-        protected override void UpdateNextFrame(long deltaTime, IEnumerable<GameObject> objects)
+        protected override CollisionKind? UpdateNextFrame(long deltaTime, IEnumerable<GameObject> objects)
         {
             _centerX += deltaTime * _velocity * Math.Cos(_angle);
             _centerY += deltaTime * _velocity * Math.Sin(_angle);
 
+            CollisionKind? res = null;
+            
             if (Top < 0)
             {
                 Top = -Top;
                 _angle = -_angle;
+                res = CollisionKind.Boundary;
             }
 
             if (Bottom > 1.0)
             {
                 Bottom = 2.0 - Bottom;
                 _angle = -_angle;
+                res = CollisionKind.Boundary;
             }
             
 
@@ -87,8 +91,11 @@ namespace WeddingCombat
                 {
                     _angle = Math.Sign(_angle) * Math.PI -_angle;
                     _velocity *= 1.3;
+                    res = CollisionKind.Paddle;
                 }
             }
+
+            return res;
         }
 
 
@@ -104,6 +111,12 @@ namespace WeddingCombat
         }
     }
 
+    public enum CollisionKind
+    {
+        Boundary,
+        Paddle
+    }
+    
     public enum EndOfRound
     {
         LeftLost,

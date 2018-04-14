@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WeddingCombat.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:melodyGuess="clr-namespace:WeddingCombat"
+        xmlns:weddingCombat="clr-namespace:WeddingCombat"
         Title="MainWindow" Width="640" Height="480"
         WindowStyle="None" ResizeMode="NoResize" WindowState="Maximized"
         WindowStartupLocation="CenterScreen" KeyUp="OnKeyUp" KeyDown="OnKeyDown"
@@ -10,7 +10,7 @@
 
 
     <Grid>
-        <Image Name="StartPage" Source="img/Start.png" Visibility="Hidden" />
+        <Image Name="StartPage" Source="img/Start.png" Visibility="Visible" />
 
         <DockPanel Name="GamePage" LastChildFill="True" Visibility="Hidden">
             <Grid DockPanel.Dock="Top">
@@ -41,25 +41,67 @@
 
             <Canvas Name="Canva" DockPanel.Dock="Bottom" />
         </DockPanel>
+        
+        <TextBox Name="RoundPage" Background="#00000000" Foreground="Azure" Text="{Binding RoundText, Mode=OneWay}" FontSize="100" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
 
-
-        <Grid Name="CreditsPage" Visibility="Visible">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="3*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Image Source="img/Galya-2.png" Height="200" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 50 0"/>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Автор идеи"
-                       Foreground="Aqua" FontSize="40" Grid.Column="1" Grid.Row="1" />
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Алексей Середкин"
-                       Foreground="Aquamarine" FontSize="40" Grid.Column="1" Grid.Row="2" />
+        <Image Name="RoundFailPage" Source="img/RoundFail.png" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+        
+        
+        <Grid Name="EventPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" Opacity="0">
+            <TextBox Text="ВайнТайм" Name="WineTime" FontSize="200" Background="DarkRed"
+                     TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Visibility="Hidden"/>
+            <Image Name="EventImageElections" Source="img/Elections.jpg" Visibility="Hidden"/>
+            <Image Name="EventImagePutin" Source="img/Putin.jpg" Visibility="Hidden"/>
+            <Image Name="EventImageGameover" Source="img/Gameover.jpg" Visibility="Hidden"/>
         </Grid>
+        
+        
+        <ItemsControl ItemsSource="{Binding CreditItems}" Name="CreditsPage" Visibility="Collapsed">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type weddingCombat:CreditItem}">
+                    <Grid Opacity="{Binding Opacity}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="3*"/>
+                            <RowDefinition  Height="*"/>
+                            <RowDefinition  Height="*"/>
+                            <RowDefinition  Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Source}"  Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center"/>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Job}"
+                                   Foreground="Aqua" FontSize="40" Grid.Column="1" Grid.Row="1" />
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Name}"
+                                   Foreground="Aquamarine" FontSize="40" Grid.Column="1" Grid.Row="2" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+        <!-- <Grid Name="CreditsPage" Visibility="Visible"> -->
+        <!--     <Grid.RowDefinitions> -->
+        <!--         <RowDefinition Height="3*" /> -->
+        <!--         <RowDefinition Height="*" /> -->
+        <!--         <RowDefinition Height="*" /> -->
+        <!--         <RowDefinition Height="3*" /> -->
+        <!--     </Grid.RowDefinitions> -->
+        <!--     <Grid.ColumnDefinitions> -->
+        <!--         <ColumnDefinition Width="*" /> -->
+        <!--         <ColumnDefinition Width="*" /> -->
+        <!--     </Grid.ColumnDefinitions> -->
+        <!--     <Image Source="img/Galya-2.png" Height="200" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0 0 50 0"/> -->
+        <!--     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Автор идеи" -->
+        <!--                Foreground="Aqua" FontSize="40" Grid.Column="1" Grid.Row="1" /> -->
+        <!--     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Алексей Середкин" -->
+        <!--                Foreground="Aquamarine" FontSize="40" Grid.Column="1" Grid.Row="2" /> -->
+        <!-- </Grid> -->
 
         <!-- <Grid Name="CreditsPage" Visibility="Visible"> -->
         <!--     <Grid.RowDefinitions> -->

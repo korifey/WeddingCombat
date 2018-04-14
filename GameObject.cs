@@ -33,9 +33,9 @@ namespace WeddingCombat
 
         public const int Fps = 100;
         
-        protected abstract void UpdateNextFrame(long deltaTime, IEnumerable<GameObject> objects);
+        protected abstract CollisionKind? UpdateNextFrame(long deltaTime, IEnumerable<GameObject> objects);
 
-        public void Update(IEnumerable<GameObject> objects)
+        public CollisionKind? Update(IEnumerable<GameObject> objects)
         {
             if (!Watch.IsRunning)
             {
@@ -45,7 +45,7 @@ namespace WeddingCombat
             var deltaTime = Watch.ElapsedMilliseconds;
             Watch.Restart();
             
-            UpdateNextFrame(deltaTime, objects.Where(o => o != this));
+            return UpdateNextFrame(deltaTime, objects.Where(o => o != this));
         }
 
         public static bool Eq(double expected, double actual)

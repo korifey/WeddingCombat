@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Ball.cs" />
     <Compile Include="Boundary.cs" />
+    <Compile Include="CreditItem.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Joystick.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -77,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Paddle.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +98,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img/*.png" />
+    <Content Include="img\Elections.jpg" />
+    <Content Include="img\Gameover.jpg" />
+    <Content Include="img\Putin.jpg" />
+    <Content Include="img\Round3Inter.jpg" />
+    <Content Include="music\BallBoundary.mp3" />
+    <Content Include="music\BallPaddle.mp3" />
+    <Content Include="music\Credits.mp3" />
+    <Content Include="music\Game.mp3" />
+    <Content Include="music\Start.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
 </Project>
