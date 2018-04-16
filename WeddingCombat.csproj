@@ -34,14 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9">
-      <HintPath>packages\SlimDX.4.0.13.44\lib\NET40\SlimDX.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SlimDX.D3D11Control, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\SlimDX.D3D11Control.1.0.1\lib\net40\SlimDX.D3D11Control.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <!--<Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9">-->
+      <!--<HintPath>packages\SlimDX.4.0.13.44\lib\NET40\SlimDX.dll</HintPath>-->
+      <!--<Private>True</Private>-->
+    <!--</Reference>-->
+    <!--<Reference Include="SlimDX.D3D11Control, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null">-->
+      <!--<HintPath>packages\SlimDX.D3D11Control.1.0.1\lib\net40\SlimDX.D3D11Control.dll</HintPath>-->
+      <!--<Private>True</Private>-->
+    <!--</Reference>-->
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -70,7 +70,6 @@
     <Compile Include="Boundary.cs" />
     <Compile Include="CreditItem.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="Joystick.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

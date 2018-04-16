@@ -11,7 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using SlimDX.DirectInput;
+//using SlimDX.DirectInput;
 using Key = System.Windows.Input.Key;
 
 namespace WeddingCombat
@@ -55,8 +55,8 @@ namespace WeddingCombat
 
         private List<GameObject> _objects;
 
-        private Joystick _joystick1;
-        private Joystick _joystick2;
+//        private Joystick _joystick1;
+//        private Joystick _joystick2;
 
         private bool _event = false;
 
@@ -98,7 +98,7 @@ namespace WeddingCombat
 
 
             InitializeComponent();
-            InitJoystick();
+//            InitJoystick();
             _melodyPlayer.URL = "music/Start.mp3";
             _melodyPlayer.settings.volume = 100;
             _melodyPlayer.controls.play();
@@ -120,60 +120,60 @@ namespace WeddingCombat
         }
 
 
-        private void InitJoystick()
-        {
-            var directInput = new DirectInput();
-            var deviceInstances = directInput.GetDevices(DeviceType.Joystick, DeviceEnumerationFlags.AllDevices);
-
-            if (deviceInstances.Count > 0)
-            {
-                _joystick1 = new Joystick(directInput, deviceInstances[0].InstanceGuid);
-                _joystick1.Properties.BufferSize = 128;
-                _joystick1.Acquire();
-
-                if (deviceInstances.Count > 1)
-                {
-                    _joystick2 = new Joystick(directInput, deviceInstances[1].InstanceGuid);
-                    _joystick2.Properties.BufferSize = 128;
-                    _joystick2.Acquire();
-                }
-            }
-        }
-
-        void AskJoysticks()
-        {
-            if (_joystick1 != null)
-                AskJoystick(_joystick1, _paddle1, 1 << 16);
-            
-            if (_joystick2 != null)
-                AskJoystick(_joystick2, _paddle2, 1 << 15);
-        }
-
-        private void AskJoystick(Joystick joystick, Paddle paddle, int max)
-        {
-//            var x = joystick.Poll();
-//            var y = joystick.GetCurrentState();
-            var joystickStates = joystick.GetBufferedData();
-            foreach (var data in joystickStates)
-            {
-                if (data.Y == 0)
-                    continue;
-                
-                if (data.Y > 0 && data.Y < max * 0.8 / 2)
-                {
-                    paddle.Throttle = -1*_invert;
-                }
-                else if (data.Y > max * 0.8 / 2 && data.Y < max * 1.2 / 2)
-                {
-                    paddle.Throttle = 0;
-                }
-                else if (data.Y > max * 1.2 / 2)
-                {
-                    paddle.Throttle = 1*_invert;
-                }
-                
-            }
-        }
+//        private void InitJoystick()
+//        {
+//            var directInput = new DirectInput();
+//            var deviceInstances = directInput.GetDevices(DeviceType.Joystick, DeviceEnumerationFlags.AllDevices);
+//
+//            if (deviceInstances.Count > 0)
+//            {
+//                _joystick1 = new Joystick(directInput, deviceInstances[0].InstanceGuid);
+//                _joystick1.Properties.BufferSize = 128;
+//                _joystick1.Acquire();
+//
+//                if (deviceInstances.Count > 1)
+//                {
+//                    _joystick2 = new Joystick(directInput, deviceInstances[1].InstanceGuid);
+//                    _joystick2.Properties.BufferSize = 128;
+//                    _joystick2.Acquire();
+//                }
+//            }
+//        }
+//
+//        void AskJoysticks()
+//        {
+//            if (_joystick1 != null)
+//                AskJoystick(_joystick1, _paddle1, 1 << 16);
+//            
+//            if (_joystick2 != null)
+//                AskJoystick(_joystick2, _paddle2, 1 << 15);
+//        }
+//
+//        private void AskJoystick(Joystick joystick, Paddle paddle, int max)
+//        {
+////            var x = joystick.Poll();
+////            var y = joystick.GetCurrentState();
+//            var joystickStates = joystick.GetBufferedData();
+//            foreach (var data in joystickStates)
+//            {
+//                if (data.Y == 0)
+//                    continue;
+//                
+//                if (data.Y > 0 && data.Y < max * 0.8 / 2)
+//                {
+//                    paddle.Throttle = -1*_invert;
+//                }
+//                else if (data.Y > max * 0.8 / 2 && data.Y < max * 1.2 / 2)
+//                {
+//                    paddle.Throttle = 0;
+//                }
+//                else if (data.Y > max * 1.2 / 2)
+//                {
+//                    paddle.Throttle = 1*_invert;
+//                }
+//                
+//            }
+//        }
 
 
         private async void Game()
@@ -389,7 +389,7 @@ namespace WeddingCombat
         {
             while (true)
             {
-                AskJoysticks();
+//                AskJoysticks();
                 Canva.Children.Clear();
                 foreach (var gameObject in _objects)
                 {
