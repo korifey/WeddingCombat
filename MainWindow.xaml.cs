@@ -59,6 +59,7 @@ namespace WeddingCombat
         private Joystick _joystick2;
 
         private bool _event = false;
+
         private int _eventNumber = 0;
 
 
@@ -186,17 +187,17 @@ namespace WeddingCombat
             _melodyPlayer.URL = "music/Game.mp3";
             _melodyPlayer.controls.play();
             _melodyPlayer.settings.volume = 15;
-//            
-//            await Round(0);
-//            await Round(1);
-//            await Round(2);
-//            await Round(3);
-//            
-//            GamePage.Visibility = Visibility.Collapsed;
-//
-//            _event = true;
-//            _eventNumber++;
-//            await HandleEvent();
+            
+            await Round(0);
+            await Round(1);
+            await Round(2);
+            await Round(3);
+            
+            GamePage.Visibility = Visibility.Collapsed;
+
+            _event = true;
+            _eventNumber = 4;
+            await HandleEvent();
             
             CreditsPage.Visibility = Visibility.Visible;
             Credits();
@@ -206,9 +207,6 @@ namespace WeddingCombat
         
         private async Task Round(int round)
         {
-
-//            while (_leftLostScore < RightName.Length && _rightLostScore < LeftName.Length)
-
             _invert = 1;
             ResetGameobject();
             
@@ -231,10 +229,29 @@ namespace WeddingCombat
 
             
 
-            const int maxScore = 2;
+            const int maxScore = 8;
             
             while (_leftLostScore < maxScore && _rightLostScore < maxScore)
             {
+                
+                //automatic event dispatch
+                if (_leftLostScore == 1 || _rightLostScore == 1)
+                {
+                    if (round == 2 && _eventNumber < 1)
+                    {
+                        _event = true;
+                        _eventNumber = 1;
+                    }
+
+                    if (round == 3 && _eventNumber < 2)
+                    {
+                        _event = true;
+                        _eventNumber = 2;
+                    }
+                }
+                
+                
+                //event handler
                 if (_event)
                 {
                     await HandleEvent();
@@ -242,6 +259,7 @@ namespace WeddingCombat
                     continue;
                 }
                 
+                //real turn
                 var eor = await Turn();
 
                 ResetGameobject();
@@ -479,12 +497,13 @@ namespace WeddingCombat
                 
                 case Key.Enter:
                     
-                    if (!_event)
-                    {
-                        _event = true;
-                        _eventNumber++;
-                    }
-                    else
+//                    if (!_event)
+//                    {
+//                        _event = true;
+//                        _eventNumber++;
+//                    }
+//                    else 
+                    if (_event) 
                     {
                         _event = false;
                     }
